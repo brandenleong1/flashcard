@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Smart Flashcards</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+		<script>
+			MathJax = {
+				tex: {
+					inlineMath: [['$', '$']]
+				}
+			};
+		</script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	</head>
+	<body>
+		<div id="big-0">
+			<div class="flex-container">
+				<button onclick="saveFile();">Download File</button>
+			</div>
+		</div>
+		<div id="big-1" style="margin-bottom: 10px;">
+			<div class="flex-container">
+				<input type="file" name="inputfile" id="inputfile"/>
+				<button onclick="toggleShowTerms();">Show All Terms</button>
+				<button onclick="addTerm();">Add Term</button>
+				<button onclick="deleteTerm();">Delete Term</button>
+				<button onclick="clearFile();">Clear File</button>
+				<button onclick="swapLan();">Swap Languages</button>
+				<button onclick="mcqQuiz();">Start MCQ</button>
+				<button onclick="frqQuiz();">Start FRQ</button>
+				<!-- <button onclick="flashcards();">Flashcards</button> -->
+				<!-- <button onclick="sortTerms();">Sort Terms</button> -->
+			</div>
+			<br>
+			<pre id="output" style="color: yellow;">No file loaded.</pre>
+			<div id="outputTable"></div>
+		</div>
+		<div id="big-2" style="margin-bottom: 10px; display: none;">
+			<div class="flex-container">
+				<h1 id="question1" style="margin-left: 20px; line-height: 100%;"></h1>
+				<h1 id="questionNum1" style="margin-left: 50px; line-height: 100%;"></h1>
+				<h1 id="checkOrX1" style="margin-left: 20px; line-height: 100%;"></h1>
+			</div>
+			<br>
+			<div class="flex-container">
+				<div id="answerA" class="answer-box divCenterText" onclick="mcqAnswer(0);"></div>
+				<div id="answerB" class="answer-box divCenterText" onclick="mcqAnswer(1);"></div>
+				<div id="answerC" class="answer-box divCenterText" onclick="mcqAnswer(2);"></div>
+				<div id="answerD" class="answer-box divCenterText" onclick="mcqAnswer(3);"></div>
+			</div>
+		</div>
+		<div id="big-3" style="margin-bottom: 10px; display: none;">
+			<div class="flex-container">
+				<h1 id="question2" style="margin-left: 20px; line-height: 100%;"></h1>
+				<h1 id="questionNum2" style="margin-left: 50px; line-height: 100%;"></h1>
+				<h1 id="checkOrX2" style="margin-left: 20px; line-height: 100%;"></h1>
+			</div>
+			<br>
+			<div class="flex-container" style="align-items: stretch;">
+				<h3 class="divCenterText" style="margin: 0px 10px;">Write the&nbsp<span id="frqLang"></span>&nbsptranslation:</h3>
+				<input type="text" id="frq-box"></input>
+				<div id="submitFrq" class="divCenterText" onclick="frqAnswer();">Submit</div>
+			</div>
+			<br><br>
+			<div id="frqConfirm" style="display: none;">
+				<div class="flex-container" style="align-items: stretch;">
+					<h3 class="divCenterText" style="margin: 0px 10px; height: 50px;">The correct answer is&nbsp<span id="frqCorrect" style="color: yellow;"></span>. Were you correct?</h3>
+					<div id="frqConfirmToggleDiv">
+						<div class="flex-container">
+							<div class="frqManualCorrect divCenterText" onclick="frqConfirm(true);">Yes</div>
+							<div class="frqManualCorrect divCenterText" onclick="frqConfirm(false);">No</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="review" style="margin-bottom: 10px; display: none;">
+			<div class="flex-container" style="align-items: stretch;">
+				<h3 class="divCenterText" style="margin: 0px 10px;">Type&nbsp<span id="reviewCount"></span>&nbsptimes:</h3>
+				<input type="text" id="reviewBox"></input>
+			</div>
+		</div>
+		<div id="big-4" style="margin-bottom: 10px; display: none;">
+			<button onclick="endFlashcards();">Return Home</button>
+			<div id="flashcardContainer">
+				<div class="flipper">
+					<div class="front divCenterText">
+						Front
+					</div>
+					<div class="back divCenterText">
+						Back
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="utils.js"></script>
+		<script src="text2speech.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
